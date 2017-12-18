@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <BUtton id="btn">button</BUtton>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.5.5/Rx.js"></script>
+    <script>
+        const button = document.getElementById('btn');
+        // Rx.Observable.fromEvent(button, 'click').subscribe(() => console.log('clicked'));
+        // var clicks = Rx.Observable.fromEvent(button,'click');
+        // var subscription =
+        // clicks.subscribe(
+        //   {  next:()=>{
+        //      alert('clicked');
+        //      subscription.unsubscribe();
+        //     },
+        //     errror:()=>{
+        //      console.log("error");
+        //     },
+        //     completed : ()=>{
+        //         console.log('completed');
+        //     }
+        //   })
+        var foo = Rx.Observable.create(function(observer){
+            observer.next(22);
+            observer.next(42);
+            observer.next(234);
+            observer.complete();
+        });
+        foo.subscribe({
+            next:(x)=>{console.log('in next',x);},
+            complete:()=>{console.log('completed');},
+            error:()=>{console.log('kodura errror');}
+        })
+    </script>
+</body>
+
+</html>
